@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1055006854603",
+    "project_id": "doctorum-f4155",
+    "storage_bucket": "doctorum-f4155.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1055006854603:android:b833d6365a99c0ebed3a4e",
+        "android_client_info": {
+          "package_name": "com.example.doctorum"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1055006854603-vr3trp85iq4o9t5atsnmi1a058gu3rsg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAmbPpJK6KsAwRVgG6lEHuptE6HLAOqzi8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1055006854603-vr3trp85iq4o9t5atsnmi1a058gu3rsg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
