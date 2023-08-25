@@ -21,7 +21,23 @@ class CodegenLoader extends AssetLoader{
   "logInTitle": "LogIn",
   "signInTitle": "SignIn",
   "resetPasswordTitle": "Reset password",
-  "checkEmailTitle": "check your mail"
+  "checkEmailTitle": "check your mail",
+  "doctorDetailTitle": "Detail Doctor",
+  "aboutDoctorTitle": "About Doctor",
+  "locationTitle": "Location",
+  "appointmentTitle": "Book appointment",
+  "timeToAppointmentTitle": "Time to appointment",
+  "searchTitle": "Search a doctor or health issue",
+  "scheduleTitle": "Schedule",
+  "cancelTitle": "Cancel",
+  "rescheduleTitle": "Reschedule",
+  "topDoctorTitle": "Top Doctor",
+  "patientsTitle": "Patients",
+  "ratingTitle": "Rating",
+  "experiencesTitle": "Experiences",
+  "homeTitle": "Home",
+  "notesTitle": "Notes",
+  "accountTitle": "Account"
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"en": en};
 }
