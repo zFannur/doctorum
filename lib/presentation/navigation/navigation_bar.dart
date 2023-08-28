@@ -1,7 +1,10 @@
 import 'package:doctorum/presentation/screens/account_screen.dart';
 import 'package:doctorum/presentation/screens/home_screen.dart';
 import 'package:doctorum/presentation/screens/notes_screen.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+
+import 'package:doctorum/resource/langs/locale_keys.g.dart';
 
 class NavigationBottomBar extends StatefulWidget {
   const NavigationBottomBar({super.key});
@@ -26,21 +29,21 @@ class _NavigationBottomBarState extends State<NavigationBottomBar> {
             _currentPageIndex = index;
           });
         },
-        destinations: const <Widget>[
+        destinations: <Widget>[
           NavigationDestination(
-            selectedIcon: Icon(Icons.home),
-            icon: Icon(Icons.home_outlined),
-            label: 'Home',
+            selectedIcon: const Icon(Icons.home),
+            icon: const Icon(Icons.home_outlined),
+            label: LocaleKeys.homeTitle.tr(),
           ),
           NavigationDestination(
-            selectedIcon: Icon(Icons.calendar_month),
-            icon: Icon(Icons.calendar_month_outlined),
-            label: 'Notes',
+            selectedIcon: const Icon(Icons.calendar_month),
+            icon: const Icon(Icons.calendar_month_outlined),
+            label: LocaleKeys.notesTitle.tr(),
           ),
           NavigationDestination(
-            selectedIcon: Icon(Icons.account_circle),
-            icon: Icon(Icons.account_circle_outlined),
-            label: 'Account',
+            selectedIcon: const Icon(Icons.account_circle),
+            icon: const Icon(Icons.account_circle_outlined),
+            label: LocaleKeys.accountTitle.tr(),
           ),
         ],
       ),

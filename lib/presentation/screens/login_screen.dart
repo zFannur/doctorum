@@ -1,5 +1,3 @@
-import 'package:doctorum/domain/entity/doctor.dart';
-import 'package:doctorum/domain/use_case/firestore/firestore.dart';
 import 'package:doctorum/presentation/bloc/auth/auth_bloc.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -7,8 +5,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:doctorum/resource/langs/locale_keys.g.dart';
 import 'package:doctorum/presentation/navigation/navgation.dart';
-
-import '../notification/notification.dart';
 
 class LogInScreen extends StatelessWidget {
   const LogInScreen({super.key});

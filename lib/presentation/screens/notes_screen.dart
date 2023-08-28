@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:doctorum/resource/const/colors.dart';
 import 'package:doctorum/resource/const/textStyles.dart';
 
-import '../../domain/entity/appointment.dart';
+import 'package:doctorum/domain/entity/appointment.dart';
 
 enum FilterStatus { upcoming, complete, cancel }
 

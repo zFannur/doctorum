@@ -7,8 +7,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:doctorum/domain/use_case/auth/auth.dart';
 
-
-
 part 'auth_event.dart';
 part 'auth_state.dart';
 
