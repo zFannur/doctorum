@@ -1,11 +1,10 @@
-import 'package:doctorum/domain/auth/auth.dart';
 import 'package:doctorum/presentation/bloc/auth/auth_bloc.dart';
 import 'package:doctorum/presentation/screens/account_welcome_screen.dart';
-import 'package:doctorum/presentation/screens/signin_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../locator_service/locator_service.dart';
+import 'package:doctorum/domain/use_case/auth/auth.dart';
+import 'package:doctorum/locator_service/locator_service.dart';
 import 'login_screen.dart';
 
 

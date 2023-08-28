@@ -42,6 +42,10 @@ dependencies:
   get_it: ^7.6.0
   easy_localization: ^3.0.2
   adaptive_theme: ^3.3.0
+  cloud_firestore: ^4.9.0
+  json_serializable: ^6.7.0
+  json_annotation: ^4.8.1
+  flutter_local_notifications: ^15.1.1
 
 dev_dependencies:
   flutter_test:

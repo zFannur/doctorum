@@ -1,4 +1,4 @@
-import 'package:doctorum/const/colors.dart';
+import 'package:doctorum/resource/const/colors.dart';
 import 'package:flutter/material.dart';
 
 class AppTheme {
@@ -8,8 +8,8 @@ class AppTheme {
       brightness: Brightness.light,
       primarySwatch: Colors.blue,
       hintColor: Colors.black,
-      navigationBarTheme: const NavigationBarThemeData(
-        indicatorColor: AppColors.primaryColor,
+      navigationBarTheme: NavigationBarThemeData(
+        indicatorColor: AppColors.backgroundColor2,
         backgroundColor: AppColors.backgroundColor,
       ));
 

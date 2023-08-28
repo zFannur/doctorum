@@ -6,7 +6,7 @@
 // tree, read text, and verify that the values of widget properties are correct.
 
 import 'package:adaptive_theme/adaptive_theme.dart';
-import 'package:doctorum/internal/application.dart';
+import 'package:doctorum/application.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 

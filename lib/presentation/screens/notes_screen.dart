@@ -1,62 +1,16 @@
+import 'package:doctorum/domain/use_case/firestore/firestore.dart';
 import 'package:doctorum/resource/langs/locale_keys.g.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
-import 'package:doctorum/const/colors.dart';
-import 'package:doctorum/const/textStyles.dart';
+import 'package:doctorum/resource/const/colors.dart';
+import 'package:doctorum/resource/const/textStyles.dart';
+
+import '../../domain/entity/appointment.dart';
 
 enum FilterStatus { upcoming, complete, cancel }
 
-List<Map> schedules = [
-  {
-    'img': 'assets/doctor01.jpeg',
-    'doctorName': 'Dr. Anastasya Syahid',
-    'doctorTitle': 'Dental Specialist',
-    'reservedDate': 'Monday, Aug 29',
-    'reservedTime': '11:00 - 12:00',
-    'status': FilterStatus.upcoming
-  },
-  {
-    'img': 'assets/doctor02.png',
-    'doctorName': 'Dr. Mauldya Imran',
-    'doctorTitle': 'Skin Specialist',
-    'reservedDate': 'Monday, Sep 29',
-    'reservedTime': '11:00 - 12:00',
-    'status': FilterStatus.upcoming
-  },
-  {
-    'img': 'assets/doctor03.jpeg',
-    'doctorName': 'Dr. Rihanna Garland',
-    'doctorTitle': 'General Specialist',
-    'reservedDate': 'Monday, Jul 29',
-    'reservedTime': '11:00 - 12:00',
-    'status': FilterStatus.upcoming
-  },
-  {
-    'img': 'assets/doctor04.jpeg',
-    'doctorName': 'Dr. John Doe',
-    'doctorTitle': 'Something Specialist',
-    'reservedDate': 'Monday, Jul 29',
-    'reservedTime': '11:00 - 12:00',
-    'status': FilterStatus.complete
-  },
-  {
-    'img': 'assets/doctor05.jpeg',
-    'doctorName': 'Dr. Sam Smithh',
-    'doctorTitle': 'Other Specialist',
-    'reservedDate': 'Monday, Jul 29',
-    'reservedTime': '11:00 - 12:00',
-    'status': FilterStatus.cancel
-  },
-  {
-    'img': 'assets/doctor05.jpeg',
-    'doctorName': 'Dr. Sam Smithh',
-    'doctorTitle': 'Other Specialist',
-    'reservedDate': 'Monday, Jul 29',
-    'reservedTime': '11:00 - 12:00',
-    'status': FilterStatus.cancel
-  },
-];
+
 
 class NotesScreen extends StatefulWidget {
   const NotesScreen({Key? key}) : super(key: key);
@@ -71,9 +25,6 @@ class _NotesScreenState extends State<NotesScreen> {
 
   @override
   Widget build(BuildContext context) {
-    List<Map> filteredSchedules = schedules.where((var schedule) {
-      return schedule['status'] == status;
-    }).toList();
 
     return Scaffold(
       body: Padding(
@@ -157,88 +108,112 @@ class _NotesScreenState extends State<NotesScreen> {
             const SizedBox(
               height: 20,
             ),
-            Expanded(
-              child: ListView.builder(
-                itemCount: filteredSchedules.length,
-                itemBuilder: (context, index) {
-                  var schedule = filteredSchedules[index];
-                  bool isLastElement = filteredSchedules.length + 1 == index;
-                  return Card(
-                    margin: !isLastElement
-                        ? const EdgeInsets.only(bottom: 20)
-                        : EdgeInsets.zero,
-                    child: Padding(
-                      padding: const EdgeInsets.all(15),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.stretch,
-                        children: [
-                          Row(
-                            children: [
-                              CircleAvatar(
-                                backgroundImage: AssetImage(schedule['img']),
-                              ),
-                              const SizedBox(
-                                width: 10,
-                              ),
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    schedule['doctorName'],
-                                    style: const TextStyle(
-                                      color: AppColors.textColor,
-                                      fontWeight: FontWeight.w700,
+            FutureBuilder(
+              future: FirestoreCRUD().getAppointment(),
+              builder: (BuildContext context,
+                  AsyncSnapshot<List<Appointment>> snapshot) {
+                Appointment? schedule;
+                if (snapshot.hasData) {
+                  return Expanded(
+                    child: ListView.builder(
+                      itemCount: snapshot.data!.length,
+                      itemBuilder: (context, index) {
+                        schedule = snapshot.data![index];
+                        if (schedule!.status == status.name.toString())
+                          {
+                            bool isLastElement = snapshot.data!.length + 1 == index;
+                            return Card(
+                              margin: !isLastElement
+                                  ? const EdgeInsets.only(bottom: 20)
+                                  : EdgeInsets.zero,
+                              child: Padding(
+                                padding: const EdgeInsets.all(15),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                                  children: [
+                                    Row(
+                                      children: [
+                                        const CircleAvatar(
+                                          backgroundImage:
+                                          AssetImage('assets/doctor.jpeg'),
+                                        ),
+                                        const SizedBox(
+                                          width: 10,
+                                        ),
+                                        Column(
+                                          crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              schedule!.doctorName,
+                                              style: const TextStyle(
+                                                color: AppColors.textColor,
+                                                fontWeight: FontWeight.w700,
+                                              ),
+                                            ),
+                                            const SizedBox(
+                                              height: 5,
+                                            ),
+                                            Text(
+                                              schedule!.doctorTitle,
+                                              style: const TextStyle(
+                                                color: AppColors.textDisablesColor,
+                                                fontSize: 12,
+                                                fontWeight: FontWeight.w600,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ],
                                     ),
-                                  ),
-                                  const SizedBox(
-                                    height: 5,
-                                  ),
-                                  Text(
-                                    schedule['doctorTitle'],
-                                    style: const TextStyle(
-                                      color: AppColors.textDisablesColor,
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.w600,
+                                    const SizedBox(
+                                      height: 15,
                                     ),
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                          const SizedBox(
-                            height: 15,
-                          ),
-                          const DateTimeCard(),
-                          const SizedBox(
-                            height: 15,
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Expanded(
-                                child: OutlinedButton(
-                                  child: Text(LocaleKeys.cancelTitle.tr()),
-                                  onPressed: () {},
+                                    DateTimeCard(
+                                      time: schedule!.reservedTime,
+                                      date: DateFormat('MMM d, yyyy').format(DateTime.parse(schedule!.reservedDate)),
+                                    ),
+                                    const SizedBox(
+                                      height: 15,
+                                    ),
+                                    Row(
+                                      mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Expanded(
+                                          child: OutlinedButton(
+                                            child:
+                                            Text(LocaleKeys.cancelTitle.tr()),
+                                            onPressed: () {},
+                                          ),
+                                        ),
+                                        const SizedBox(
+                                          width: 20,
+                                        ),
+                                        Expanded(
+                                          child: ElevatedButton(
+                                            child: Text(
+                                                LocaleKeys.rescheduleTitle.tr()),
+                                            onPressed: () => {},
+                                          ),
+                                        )
+                                      ],
+                                    ),
+                                  ],
                                 ),
                               ),
-                              const SizedBox(
-                                width: 20,
-                              ),
-                              Expanded(
-                                child: ElevatedButton(
-                                  child: Text(LocaleKeys.rescheduleTitle.tr()),
-                                  onPressed: () => {},
-                                ),
-                              )
-                            ],
-                          )
-                        ],
-                      ),
+                            );
+                          } else {
+                          return const SizedBox();
+                        }
+                      },
                     ),
                   );
-                },
-              ),
-            )
+                } else {
+                  return const Center(child: CircularProgressIndicator());
+                }
+              },
+            ),
           ],
         ),
       ),
@@ -247,8 +222,13 @@ class _NotesScreenState extends State<NotesScreen> {
 }
 
 class DateTimeCard extends StatelessWidget {
+  final String date;
+  final String time;
+
   const DateTimeCard({
     Key? key,
+    required this.time,
+    required this.date,
   }) : super(key: key);
 
   @override
@@ -260,23 +240,23 @@ class DateTimeCard extends StatelessWidget {
       ),
       width: double.infinity,
       padding: const EdgeInsets.all(20),
-      child: const Row(
+      child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Row(
             children: [
-              Icon(
+              const Icon(
                 Icons.calendar_today,
                 color: AppColors.primaryColor,
                 size: 15,
               ),
-              SizedBox(
+              const SizedBox(
                 width: 5,
               ),
               Text(
-                'Mon, July 29',
-                style: TextStyle(
+                date,
+                style: const TextStyle(
                   fontSize: 12,
                   color: AppColors.primaryColor,
                   fontWeight: FontWeight.bold,
@@ -286,17 +266,17 @@ class DateTimeCard extends StatelessWidget {
           ),
           Row(
             children: [
-              Icon(
+              const Icon(
                 Icons.access_alarm,
                 color: AppColors.primaryColor,
                 size: 17,
               ),
-              SizedBox(
+              const SizedBox(
                 width: 5,
               ),
               Text(
-                '11:00 ~ 12:10',
-                style: TextStyle(
+                time,
+                style: const TextStyle(
                   color: AppColors.primaryColor,
                   fontWeight: FontWeight.bold,
                 ),

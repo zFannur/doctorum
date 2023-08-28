@@ -25,7 +25,7 @@ class CodegenLoader extends AssetLoader{
   "doctorDetailTitle": "Detail Doctor",
   "aboutDoctorTitle": "About Doctor",
   "locationTitle": "Location",
-  "appointmentTitle": "Book appointment",
+  "appointmentTitle": "Appointment",
   "timeToAppointmentTitle": "Time to appointment",
   "searchTitle": "Search a doctor or health issue",
   "scheduleTitle": "Schedule",

@@ -1,12 +1,12 @@
 import 'dart:developer';
-
 import 'package:doctorum/resource/langs/locale_keys.g.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:equatable/equatable.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:doctorum/domain/auth/auth.dart';
+import 'package:doctorum/domain/use_case/auth/auth.dart';
+
 
 
 part 'auth_event.dart';

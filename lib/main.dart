@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
-import 'internal/application.dart';
+import 'application.dart';
 import 'locator_service/locator_service.dart';
 
 void main() async {
